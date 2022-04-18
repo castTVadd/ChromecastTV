@@ -1,7 +1,7 @@
 <html>
 <head>
   <script type="text/javascript"
-      src="//www.gstatic.com/cast/sdk/libs/caf_receiver/v3/cast_receiver_framework.js">
+      src="cast_receiver_framework.js">
   </script>
 </head>
 <body>
@@ -20,6 +20,8 @@
           error.reason = cast.framework.messages.ErrorReason.INVALID_PARAM;
           return error;
         }
+
+        loadRequestData.media.contentUrl = 'http://192.168.100.6:9182/CORS/' + loadRequestData.media.contentUrl;
 
         if (!loadRequestData.media.entity) {
           return loadRequestData;
