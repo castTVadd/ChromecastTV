@@ -21,13 +21,13 @@
           return error;
         }
 
-        loadRequestData.media.contentUrl = 'http://192.168.100.6:9182/CORS/' + loadRequestData.media.contentUrl;
+        //loadRequestData.media.contentUrl = 'http://192.168.100.6:9182/CORS/' + loadRequestData.media.contentUrl;
 
         if (!loadRequestData.media.entity) {
           return loadRequestData;
         }
 
-        document.getElementById('screencast').src = loadRequestData.media.contentUrl;
+        //document.getElementById('screencast').src = loadRequestData.media.contentUrl;
         
         return loadRequestData;
     });
