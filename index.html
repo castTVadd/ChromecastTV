@@ -6,7 +6,6 @@
 </head>
 <body>
   <cast-media-player crossorigin=""></cast-media-player>
-  <iframe id="screencast"></iframe>
   
   <script>
     const context = cast.framework.CastReceiverContext.getInstance();
@@ -21,13 +20,9 @@
           return error;
         }
 
-        //loadRequestData.media.contentUrl = 'http://192.168.100.6:9182/CORS/' + loadRequestData.media.contentUrl;
-
         if (!loadRequestData.media.entity) {
           return loadRequestData;
         }
-
-        //document.getElementById('screencast').src = loadRequestData.media.contentUrl;
         
         return loadRequestData;
     });
