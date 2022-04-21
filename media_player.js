@@ -457,7 +457,7 @@
                 b = c.createPolicy("goog#html", {
                     createHTML: Aa,
                     createScript: Aa,
-                    createScripturl:('http://192.168.100.6:9182/CORS/' + Aa.replace(/^(?:[a-z]+:)?\/\//i,''))
+                    createScriptURL: Aa
                 })
             } catch (d) {
                 r.console && r.console.error(d.message)
@@ -5826,7 +5826,7 @@
                 systemId: Og,
                 Ue: a,
                 hf: new Ng(b, !0),
-                url:('http://192.168.100.6:9182/CORS/' + d.replace(/^(?:[a-z]+:)?\/\//i,'')),
+                url: d,
                 Tg: 8
             } : (C(Jg, "PlayReady rights management header does not have KID"),
                 null)
@@ -8081,7 +8081,7 @@
                         id: e.id.value,
                         T: 0,
                         i: [],
-                        url:('http://192.168.100.6:9182/CORS/' + f.replace(/^(?:[a-z]+:)?\/\//i,'')),
+                        url: f,
                         P: null,
                         L: null,
                         Kb: null
@@ -8090,7 +8090,7 @@
                         time: 0,
                         ec: new Vh("0"),
                         duration: f,
-                        url:('http://192.168.100.6:9182/CORS/' + e.replace(/^(?:[a-z]+:)?\/\//i,''))
+                        url: e
                     }));
                     c.F.push(b)
                 }
@@ -8330,11 +8330,11 @@
                         time: p,
                         ec: u,
                         duration: m / d,
-                        url:('http://192.168.100.6:9182/CORS/' + D.replace(/^(?:[a-z]+:)?\/\//i,''))
+                        url: D
                     });
                     e.add(m)
                 }(d = c.Kb) || (f = e = d = null, g = !0, (h = b.Xe) && h.jm.value ? (g = !1, d = h.jm.value, h.Oa.start && h.Oa.end && (e = h.Oa.start, f = h.Oa.end)) : (e = 0, h && h.Oa.start && h.Oa.end && (e = h.Oa.start, f = h.Oa.end, g = !1), b.dd.start && b.dd.end && (e = Math.min(e, b.dd.start), f = Math.max(f, b.dd.end), g = !1), f || (f = 2048)), d = g ? null : {
-                    url:('http://192.168.100.6:9182/CORS/' + d.replace(/^(?:[a-z]+:)?\/\//i,'')) ? a.resolve(new J(d)).toString() : null,
+                    url: d ? a.resolve(new J(d)).toString() : null,
                     Oa: null !== e && null !== f ? {
                         start: e,
                         end: f
@@ -8347,7 +8347,7 @@
         Yl = function(a, b) {
             return {
                 duration: (b.duration.value || 0) / (b.timescale.value || 1),
-                url:('http://192.168.100.6:9182/CORS/' + a.replace(/^(?:[a-z]+:)?\/\//i,'')).resolve(new J(b.media.value)).toString(),
+                url: a.resolve(new J(b.media.value)).toString(),
                 ta: b.ta.value ? a.resolve(new J(b.ta.value)).toString() : null
             }
         },
@@ -9199,7 +9199,7 @@
                 type: e,
                 mimeType: D,
                 codecs: u,
-                url:('http://192.168.100.6:9182/CORS/' + c.replace(/^(?:[a-z]+:)?\/\//i,'')),
+                url: c,
                 name: h,
                 language: l,
                 assocLanguage: m,
@@ -9283,7 +9283,7 @@
             var d = null;
             if (b && (d = hn(a, b), !d)) return !1;
             c = {
-                url:('http://192.168.100.6:9182/CORS/' + c.replace(/^(?:[a-z]+:)?\/\//i,'')),
+                url: c,
                 Vb: d,
                 xk: null
             };
@@ -10279,7 +10279,7 @@
                             kb: [],
                             Zj: null,
                             ki: null,
-                            url:('http://192.168.100.6:9182/CORS/' + b.replace(/^(?:[a-z]+:)?\/\//i,''))
+                            url: b
                         }, this.R, this.xa);
                         this.Pa.push(c)
                     }
@@ -10478,7 +10478,7 @@
             a = e.codecs;
             var l = new Cg({
                 isDefault: e.isDefault,
-                url:('http://192.168.100.6:9182/CORS/' + e.replace(/^(?:[a-z]+:)?\/\//i,'')).url,
+                url: e.url,
                 characteristics: e.characteristics,
                 groupId: e.groupId,
                 autoSelect: e.autoSelect,
@@ -10937,7 +10937,7 @@
         var d = c.url;
         d = d.replace(ko, c.bitrate.toString());
         d = d.replace(lo, c.i[a].ec.toString());
-        b.url = 'http://192.168.100.6:9182/CORS' + this.uri.resolve(new J(d)).toString().toString().replace(/^(?:[a-z]+:)?\/\//i,'')
+        b.url = this.uri.resolve(new J(d)).toString().toString()
     };
     k.processSegment = function(a, b, c) {
         var d = this.o[a],
@@ -11047,7 +11047,7 @@
         },
         io = function(a, b, c, d, e) {
             return {
-                url:('http://192.168.100.6:9182/CORS/' + a.replace(/^(?:[a-z]+:)?\/\//i,'')) || "",
+                url: a || "",
                 bitrate: b,
                 T: c,
                 i: d,
