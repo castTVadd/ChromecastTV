@@ -3288,7 +3288,7 @@
     };
     t("cast.player.api.RequestInfo", zg);
     var Ag = function(a, b, c, d, e) {
-        this.url = ('http://192.168.100.6:9182/CORS/' + a.replace(/^(?:[a-z]+:)?\/\//i,''));
+        this.url = a;
         this.errorCode = b;
         this.status = c;
         this.responseHeaders = d;
@@ -3318,7 +3318,7 @@
             g = void 0 === a.forced ? !1 : a.forced,
             h = void 0 === a.assocLanguage ? null : a.assocLanguage;
         this.isDefault = void 0 === a.isDefault ? !1 : a.isDefault;
-        this.url = ('http://192.168.100.6:9182/CORS/' + b.replace(/^(?:[a-z]+:)?\/\//i,''));
+        this.url = b;
         this.characteristics = c;
         this.groupId = d;
         this.autoSelect = e;
@@ -3361,7 +3361,7 @@
         }
     };
     var Hg = function(a) {
-        this.url = ('http://192.168.100.6:9182/CORS/' + a.replace(/^(?:[a-z]+:)?\/\//i,''));
+        this.url = a;
         this.updateCaptionsRequestInfo = this.updateSegmentRequestInfo = this.updateManifestRequestInfo = null
     };
     t("cast.player.api.HostBase", Hg);
