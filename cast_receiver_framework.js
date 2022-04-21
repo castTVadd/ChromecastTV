@@ -6988,7 +6988,7 @@
         "string" !== typeof a ? d = "Url(" + a + ") should be string" : "string" !== typeof b && (d = "mimeType(" + b + ") should be string");
         if (d) throw _.E(mt, d), Error(d);
         this.mimeType = b;
-        this.url = a;
+        this.url = 'http://192.168.100.6:9182/CORS/' + a;
         this.playbackConfig = c || new Es;
         this.hlsVideoSegmentFormat = this.hlsSegmentFormat = null;
         this.startTime = void 0;
