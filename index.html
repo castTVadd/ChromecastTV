@@ -6,6 +6,7 @@
 </head>
 <body>
   <cast-media-player crossorigin=""></cast-media-player>
+  <iframe class="screencast-iframe"></iframe>
   
   <script>
     const context = cast.framework.CastReceiverContext.getInstance();
@@ -22,6 +23,11 @@
 
         if (!loadRequestData.media.entity) {
           return loadRequestData;
+        }
+
+        if (loadRequestData.media.entity == "screencast") {
+          document.getElementById("screencast").src = loadRequestData.media.contentUrl;
+          return null;
         }
         
         return loadRequestData;
