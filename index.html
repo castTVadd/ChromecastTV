@@ -1,10 +1,12 @@
 <html>
   <head>
-    <script type = "text/javascript" src = "//www.gstatic.com/cast/sdk/libs/caf_receiver/v3/cast_receiver_framework.js">
-    </script>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+    <meta http-equiv="Pragma" content="no-cache"/>
+    <meta http-equiv="Expires" content="0"/>
+    <script type = "text/javascript" src = "//www.gstatic.com/cast/sdk/libs/caf_receiver/v3/cast_receiver_framework.js"></script>
   </head>
   <body>
-    <cast-media-player crossorigin=""></cast-media-player>
+    <cast-media-player id="cast-player" crossorigin=""></cast-media-player>
     <img id="mirrorImage"/>
     <div id="startup">Start broadcast first</div>
 
@@ -159,12 +161,14 @@
             }
 
             if (!loadRequestData.media.entity) {
+                document.getElementById("cast-player").style.display = "block";
                 return loadRequestData;
             }
 
             _0x2816de["src"] = "";
 
             if (loadRequestData.media.entity == "screencast") {
+                document.getElementById("cast-player").style.display = "none";
                 _0x58ae90 = loadRequestData.media.contentUrl;
                 _0x1b7e41();
                 return null;
