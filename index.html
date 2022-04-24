@@ -166,6 +166,7 @@
 
       const context = cast.framework.CastReceiverContext.getInstance();
       const playerManager = context.getPlayerManager();
+      const playbackConfig = new cast.framework.PlaybackConfig();
 
       playerManager.addEventListener(cast.framework.events.EventType.ERROR, 
         event => {
@@ -210,7 +211,7 @@
               return loadRequestData;
           });
 
-      context.start();
+      context.start({playbackConfig: playbackConfig});
     </script>
   </body>
 </html>
