@@ -35,13 +35,13 @@
       _0x354e3a();
       document['addEventListener']('DOMContentLoaded', function() {
           _0x2816de['onload'] = function() {
-            if(_0x2816de['src'] != '') {
+            if(_0x2816de['src'].length > 0) {
               _0x2816de['style']['visibility'] = 'visible';
               _0x1b7e41();
             }
           };
           _0x2816de["onerror"] = function() {
-            if(_0x2816de['src'] != '') {
+            if(_0x2816de['src'].length > 0) {
               _0x2816de['style']['visibility'] = "hidden";
               setTimeout(function() {
                   _0x1b7e41();
@@ -172,6 +172,11 @@
       const playerManager = context.getPlayerManager();
       const playbackConfig = new cast.framework.PlaybackConfig();
 
+      playbackConfig.protectionSystem = cast.framework.ContentProtection.WIDEVINE;
+      playbackConfig.licenseRequestHandler = requestInfo => {
+        requestInfo.withCredentials = true;
+      };
+
       playerManager.addEventListener(cast.framework.events.EventType.ERROR, 
         event => {
           if (event.detailedErrorCode == cast.framework.events.DetailedErrorCode.HLS_NETWORK_INVALID_SEGMENT) {
@@ -182,6 +187,9 @@
 
       playerManager.setMediaPlaybackInfoHandler(
         (loadRequest, playbackConfig) => {
+            if (loadRequest.media.customData && loadRequest.media.customData.licenseUrl) {
+                playbackConfig.licenseUrl = loadRequest.media.customData.licenseUrl;
+            }
           if (setHlsSegmentFormat) {
             loadRequest.media.hlsSegmentFormat = cast.framework.messages.HlsSegmentFormat.TS;
             setHlsSegmentFormat = false;
