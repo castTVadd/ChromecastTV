@@ -191,7 +191,10 @@
               const error = new cast.framework.messages.ErrorData(
                   cast.framework.messages.ErrorType.LOAD_FAILED);
 
-              document.body.removeChild(document.getElementById("spotify-script"));
+              const spotifyScript = document.getElementById("spotify-script");
+              if(spotifyScript != null) {
+                document.body.removeChild(spotifyScript);
+              }
 
               if (!loadRequestData.media) {
                   error.reason = cast.framework.messages.ErrorReason.INVALID_PARAM;
