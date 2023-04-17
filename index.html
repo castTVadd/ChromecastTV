@@ -204,6 +204,7 @@
                 if (window.navigator.requestMediaKeySystemAccess) {
                     window.navigator.requestMediaKeySystemAccess(keySystem, config).then(function (keySystemAccess) {
                     supportedSystems.push(keySystem);
+                    console.log(supportedSystems)
                     }).catch(function () {
                     unsupportedSystems.push(keySystem);
                     });
@@ -260,7 +261,6 @@
         }
 
         supportsEncryptedMediaExtension()
-        console.log(supportedSystems)
 
       playbackConfig.protectionSystem = cast.framework.ContentProtection.WIDEVINE;
       playbackConfig.licenseRequestHandler = requestInfo => {
