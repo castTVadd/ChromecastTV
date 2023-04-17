@@ -232,6 +232,18 @@
                         getOAuthToken: cb => { cb(token); },
                         volume: 0.5
                     });
+
+                    player.addListener('initialization_error', ({ message }) => {
+                        console.error(message);
+                    });
+
+                    player.addListener('authentication_error', ({ message }) => {
+                        console.error(message);
+                    });
+
+                    player.addListener('account_error', ({ message }) => {
+                        console.error(message);
+                    });
             
                     player.addListener('ready', ({ device_id }) => {
                         console.log('Ready with Device ID', device_id);
@@ -271,6 +283,7 @@
             
                     player.connect().then(success => {
                       if (success) {
+                        player.togglePlay();
                         console.log('The Web Playback SDK successfully connected to Spotify!');
                       }
                     });
