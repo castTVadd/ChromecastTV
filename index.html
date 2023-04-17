@@ -190,6 +190,9 @@
           cast.framework.messages.MessageType.LOAD, loadRequestData => {
               const error = new cast.framework.messages.ErrorData(
                   cast.framework.messages.ErrorType.LOAD_FAILED);
+
+              document.body.removeChild(document.getElementById("spotify-script"));
+
               if (!loadRequestData.media) {
                   error.reason = cast.framework.messages.ErrorReason.INVALID_PARAM;
                   return error;
@@ -210,14 +213,17 @@
               }
 
               if (loadRequestData.media.entity.startsWith("spotify")) {
+                const token = loadRequestData.media.entity.substring(7);
+
+                document.getElementById("cast-player").style.display = "none";
                 const script = document.createElement("script");
+                script.id = "spotify-script";
                 script.src = "https://sdk.scdn.co/spotify-player.js";
                 script.async = true;
             
                 document.body.appendChild(script);
             
                 window.onSpotifyWebPlaybackSDKReady = () => {
-                    const token = loadRequestData.media.entity.substring(7);
                     const player = new window.Spotify.Player({
                         name: 'Web Playback SDK',
                         getOAuthToken: cb => { cb(token); },
@@ -263,6 +269,8 @@
                     position_ms: 0,
                     });
                 };
+
+                return null;
               }
 
               return loadRequestData;
