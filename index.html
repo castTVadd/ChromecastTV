@@ -254,7 +254,7 @@
                                 },
                             }
                             );
-                            print(response.body);
+                            console.log(response.body);
                         });
                         };
 
@@ -269,7 +269,11 @@
                         console.log('Device ID has gone offline', device_id);
                     });
             
-                    player.connect();
+                    player.connect().then(success => {
+                      if (success) {
+                        console.log('The Web Playback SDK successfully connected to Spotify!');
+                      }
+                    });
                 };
 
                 return null;
