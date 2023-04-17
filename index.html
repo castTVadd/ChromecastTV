@@ -35,14 +35,18 @@
       _0x354e3a();
       document['addEventListener']('DOMContentLoaded', function() {
           _0x2816de['onload'] = function() {
+            if(_0x2816de['src'] != '') {
               _0x2816de['style']['visibility'] = 'visible';
               _0x1b7e41();
+            }
           };
           _0x2816de["onerror"] = function() {
+            if(_0x2816de['src'] != '') {
               _0x2816de['style']['visibility'] = "hidden";
               setTimeout(function() {
                   _0x1b7e41();
               }, 1000);
+            }
           };
       });
 
@@ -280,6 +284,19 @@
                     player.addListener('not_ready', ({ device_id }) => {
                         console.log('Device ID has gone offline', device_id);
                     });
+
+                    player.addListener('player_state_changed', ( state => {
+                        if (!state) {
+                            return;
+                        }
+
+                        setTrack(state.track_window.current_track);
+                        setPaused(state.paused);
+
+                        player.getCurrentState().then( state => { 
+                            (!state)? setActive(false) : setActive(true) 
+                        });
+                    }));
             
                     player.connect().then(success => {
                       if (success) {
