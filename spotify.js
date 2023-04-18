@@ -8451,8 +8451,8 @@
               }
               for (var _ in this._configs = i,
               l.KeySystem) {
-                  i.audioRobustness = SW_SECURE_CRYPTO;
-                  i.videoRobustness = SW_SECURE_CRYPTO;
+                  i.audioRobustness = "SW_SECURE_CRYPTO";
+                  i.videoRobustness = "SW_SECURE_CRYPTO";
                   if (Object.prototype.hasOwnProperty.call(l.KeySystem, _)) {
                       var p = _;
                       n.push(navigator.requestMediaKeySystemAccess(l.KeySystem[p], i).then((function(e) {
