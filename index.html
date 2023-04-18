@@ -327,6 +327,7 @@
                     const music = MusicKit.getInstance();
 
                     music.musicUserToken = loadRequestData.media.entity.substring("applemusic".length);
+                    await music.authorize();
                     await music.setQueue({ song: loadRequestData.media.contentUrl });
                     await music.play();
                 });
@@ -338,6 +339,8 @@
                 script.async = true;
 
                 document.body.appendChild(script);
+
+                return null;
               }
 
               if (loadRequestData.media.entity.startsWith("spotify")) {
