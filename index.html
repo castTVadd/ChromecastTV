@@ -331,6 +331,7 @@
                     await music.setQueue({ song: loadRequestData.media.contentUrl });
                     await music.play();
                 });
+                document.getElementById("cast-player").style.display = "none";
                 
                 const script = document.createElement("script");
                 script.id = "apple-script";
