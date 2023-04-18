@@ -175,8 +175,6 @@
       options.disableIdleTimeout = true;
 
       const context = cast.framework.CastReceiverContext.getInstance();
-      context.start(options);
-
       const playerManager = context.getPlayerManager();
       const playbackConfig = new cast.framework.PlaybackConfig();
 
@@ -208,7 +206,12 @@
                 console.log('found default EME');
                 hasEME = true;
                 var isKeySystemSupported = function (keySystem) {
-                var config = [{initDataTypes: ['cenc']}];
+                var config = [{initDataTypes: ['cenc'],audioCapabilities: [{
+                    "contentType": "audio/mp4;codecs=\"mp4a.40.2\""
+                }],
+                videoCapabilities: [{
+                    "contentType": "video/mp4;codecs=\"avc1.42E01E\""
+                }]}];
                 if (window.navigator.requestMediaKeySystemAccess) {
                     window.navigator.requestMediaKeySystemAccess(keySystem, config).then(function (keySystemAccess) {
                     supportedSystems.push(keySystem);
@@ -227,40 +230,6 @@
                 }
                 }
             }
-            } else if (window.MSMediaKeys) {
-            if (typeof window.MSMediaKeys === 'function') {
-                console.log('found MS-EME');
-                hasEME = true;
-                var keysys, dummy, i;
-                for (keysys in keySystems) {
-                if (keySystems.hasOwnProperty(keysys)) {
-                    for (dummy in keySystems[keysys]) {
-                    if (MSMediaKeys.isTypeSupported(keySystems[keysys][dummy])) {
-                        supportedSystems.push(keySystems[keysys][dummy]);
-                    } else {
-                        unsupportedSystems.push(keySystems[keysys][dummy]);
-                    }
-                    }
-                }
-                }
-            }
-            } else if (testVideoElement.webkitGenerateKeyRequest) {
-            if (typeof testVideoElement.webkitGenerateKeyRequest === 'function') {
-                console.log('found WebKit EME');
-                hasEME = true;
-                var keysys, dummy, i;
-                for (keysys in keySystems) {
-                if (keySystems.hasOwnProperty(keysys)) {
-                    for (dummy in keySystems[keysys]) {
-                    if (testVideoElement.canPlayType('video/mp4', keySystems[keysys][dummy])) {
-                        supportedSystems.push(keySystems[keysys][dummy]);
-                    } else {
-                        unsupportedSystems.push(keySystems[keysys][dummy]);
-                    }
-                    }
-                }
-                }
-            }
             } else {
             console.log('no supported EME implementation found');
             hasEME = false;
@@ -269,6 +238,15 @@
         }
 
         supportsEncryptedMediaExtension()
+
+        var hasEMESupport = function() {
+            var eme = "MediaKeys" in window || "WebKitMediaKeys" in window || "MSMediaKeys" in window;
+            if (eme) {
+                return true;
+            }
+            return false;
+        };
+        console.log('has eme: ' + hasEMESupport());
 
         //playbackConfig.licenseUrl = 'http://widevine/yourLicenseServer';
       playbackConfig.protectionSystem = cast.framework.ContentProtection.WIDEVINE;
@@ -456,7 +434,8 @@
               return loadRequestData;
           });
 
-      context.start({playbackConfig: playbackConfig});
+      options.playbackConfig = playbackConfig;
+      context.start(options);
     </script>
   </body>
 </html>
