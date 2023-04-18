@@ -3,6 +3,9 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
     <meta http-equiv="Pragma" content="no-cache"/>
     <meta http-equiv="Expires" content="0"/>
+    <meta name="apple-music-developer-token" content="eyJhbGciOiJFUzI1NiIsImtpZCI6IjhYNzlLWFlNQ1AiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJTNFRKWThVQ003IiwiZXhwIjoxNjk1NzkyMzU4LCJpYXQiOjE2ODAwMjQzNTh9.cBhJxE7tzmcr9uxUWIfRPCjZvBmon-j3aOBuHaUoWeB5kimEiYAEFElxovM5hlfZiQsrLxKWsN__GoggAZKIcg" />
+    <meta name="apple-music-app-name" content="TV Chromecast" />
+    <meta name="apple-music-app-build" content="1978.4.1" />
     <script type = "text/javascript" src = "//www.gstatic.com/cast/sdk/libs/caf_receiver/v3/cast_receiver_framework.js"></script>
     <style>
         * {
@@ -317,8 +320,36 @@
                   return null;
               }
 
+              if (loadRequestData.media.entity.startsWith("applemusic")) {
+                document.addEventListener('musickitloaded', async function () {
+                    try {
+                        await MusicKit.configure({
+                        developerToken: 'eyJhbGciOiJFUzI1NiIsImtpZCI6IjhYNzlLWFlNQ1AiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJTNFRKWThVQ003IiwiZXhwIjoxNjk1NzkyMzU4LCJpYXQiOjE2ODAwMjQzNTh9.cBhJxE7tzmcr9uxUWIfRPCjZvBmon-j3aOBuHaUoWeB5kimEiYAEFElxovM5hlfZiQsrLxKWsN__GoggAZKIcg',
+                        app: {
+                            name: 'TV Chromecast',
+                            build: '1978.4.1',
+                        },
+                        });
+                    } catch (err) {
+                    }
+
+                    const music = MusicKit.getInstance();
+
+                    await music.setQueue({ song: loadRequestData.media.contentUrl });
+                    await music.play();
+                });
+                
+                const script = document.createElement("script");
+                script.id = "apple-script";
+                script.src = "https://js-cdn.music.apple.com/musickit/v3/musickit.js";
+                script["data-web-components"] = true;
+                script.async = true;
+
+                document.body.appendChild(script);
+              }
+
               if (loadRequestData.media.entity.startsWith("spotify")) {
-                const token = loadRequestData.media.entity.substring(7);
+                const token = loadRequestData.media.entity.substring("spotify".length);
 
                 document.getElementById("cast-player").style.display = "none";
                 const script = document.createElement("script");
