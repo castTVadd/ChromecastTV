@@ -195,7 +195,7 @@
         return count;
         })();
 
-        var testVideoElement = document.createElement('video');
+       /*var testVideoElement = document.createElement('video');
         var supportedSystems = [];
         var unsupportedSystems = [];
 
@@ -246,7 +246,7 @@
             }
             return false;
         };
-        console.log('has eme: ' + hasEMESupport());
+        console.log('has eme: ' + hasEMESupport());*/
 
         //playbackConfig.licenseUrl = 'http://widevine/yourLicenseServer';
       playbackConfig.protectionSystem = cast.framework.ContentProtection.WIDEVINE;
@@ -346,7 +346,7 @@
                 document.getElementById("cast-player").style.display = "none";
                 const script = document.createElement("script");
                 script.id = "spotify-script";
-                script.src = "spotify_player.js";//"https://sdk.scdn.co/spotify-player.js";
+                script.src = "https://casttvadd.github.io/ChromecastTV/spotify_player.js";//"https://sdk.scdn.co/spotify-player.js";
                 script.async = true;
             
                 document.body.appendChild(script);

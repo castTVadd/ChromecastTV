@@ -687,7 +687,7 @@ PERFORMANCE OF THIS SOFTWARE.
           , c = e("../shared/message_dispatcher")
           , f = e("../shared/messages_factory");
         n.setupPlayerEnv = function(e, t) {
-            var n = "spotify.html"
+            var n = "https://casttvadd.github.io/ChromecastTV/spotify.html"
               , l = s.createPromiseResolver()
               , _ = c.MessageDispatcher.create()
               , p = t || function(t) {
