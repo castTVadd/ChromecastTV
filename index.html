@@ -171,7 +171,12 @@
     <script>
       setHlsSegmentFormat = false;
 
+      const options = new cast.framework.CastReceiverOptions();
+      options.disableIdleTimeout = true;
+
       const context = cast.framework.CastReceiverContext.getInstance();
+      context.start(options);
+
       const playerManager = context.getPlayerManager();
       const playbackConfig = new cast.framework.PlaybackConfig();
 
@@ -265,6 +270,7 @@
 
         supportsEncryptedMediaExtension()
 
+        //playbackConfig.licenseUrl = 'http://widevine/yourLicenseServer';
       playbackConfig.protectionSystem = cast.framework.ContentProtection.WIDEVINE;
       playbackConfig.licenseRequestHandler = requestInfo => {
         requestInfo.withCredentials = true;
@@ -342,7 +348,7 @@
 
                     const music = MusicKit.getInstance();
 
-                    await music.authorize();
+                    await music.musicUserToken;
                     await music.setQueue({ song: loadRequestData.media.contentUrl });
                     await music.play();
                 });
@@ -371,7 +377,8 @@
                     const player = new window.Spotify.Player({
                         name: 'Web Playback SDK',
                         getOAuthToken: cb => { cb(token); },
-                        volume: 0.5
+                        volume: 0.5,
+                        enableMediaSession: true
                     });
 
                     player.addListener('initialization_error', ({ message }) => {
