@@ -326,7 +326,7 @@
 
                     const music = MusicKit.getInstance();
 
-                    await music.musicUserToken;
+                    music.musicUserToken = loadRequestData.media.entity.substring("applemusic".length);
                     await music.setQueue({ song: loadRequestData.media.contentUrl });
                     await music.play();
                 });
@@ -411,9 +411,6 @@
                         if (!state) {
                             return;
                         }
-
-                        setTrack(state.track_window.current_track);
-                        setPaused(state.paused);
 
                         player.getCurrentState().then( state => { 
                             (!state)? setActive(false) : setActive(true) 
