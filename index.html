@@ -299,6 +299,13 @@
               const spotifyScript = document.getElementById("spotify-script");
               if(spotifyScript != null) {
                 document.body.removeChild(spotifyScript);
+                spotifyScript.remove();
+              }
+
+              const appleScript = document.getElementById("apple-script");
+              if(appleScript != null) {
+                document.body.removeChild(appleScript);
+                appleScript.remove();
               }
 
               if (!loadRequestData.media) {
