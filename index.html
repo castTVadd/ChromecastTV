@@ -342,6 +342,7 @@
 
                     const music = MusicKit.getInstance();
 
+                    await music.authorize();
                     await music.setQueue({ song: loadRequestData.media.contentUrl });
                     await music.play();
                 });
