@@ -305,25 +305,12 @@
               _0x2816de["src"] = "";
 
               if (loadRequestData.media.entity == "screencast1") {
-                navigator.tcpPermission.requestPermission({remoteAddress: loadRequestData.media.contentUrl, remotePort: 5005}).then(
-                    () => {
-                        var mySocket = new TCPSocket(loadRequestData.media.contentUrl, 5005);
-
-                        mySocket.readable.getReader().read().then(
-                            ({ value, done }) => {
-                                if (!done) {
-                                    _0x2816de["src"] = "data:image/jpeg;base64" + value;
-                                }
-
-                                mySocket.close();
-                            }
-                        );
-                    }
-                );
-                  document.getElementById("cast-player").style.display = "none";
-                  //_0x58ae90 = loadRequestData.media.contentUrl;
-                  //_0x354e3a();
-                  return null;
+                let socket = new WebSocket(loadRequestData.media.contentUrl);
+                socket.onmessage = function(event) {
+                    _0x2816de["src"] = "data:image/jpeg;base64" + event.data;
+                }
+                document.getElementById("cast-player").style.display = "none";
+                return null;
               }
 
               if (loadRequestData.media.entity == "screencast") {
